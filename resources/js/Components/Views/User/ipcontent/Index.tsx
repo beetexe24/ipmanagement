@@ -117,6 +117,28 @@ export default function Index()
         setToaddIP({...toaddIP,[e.target.name] : e.target.value})
     }
 
+    function openHistories(id:number)
+    {
+        const param = {
+            "id": id
+        }
+
+        APIrequest
+        .post("/get-history", param)
+        .then((response) => {
+            if(response.data.success)
+            {
+                //setHistoryData(response.data.data);
+                //setOpenModalHistories(true);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+        
+    }
+
     return (
             <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 relative">
                 <Modaladd 

@@ -3,6 +3,7 @@ namespace App\Http\Services;
 
 
 use App\Models\iplists;
+use App\Models\iplisthistories;
 
 
 class ipService {
@@ -11,7 +12,12 @@ class ipService {
     {
         # NOTE: ONE LINER CODE ISN'T MOVED IN REPOSITORY AS IT WOULD BECOME REDUNDANT WHEN PLACED TO
         # REPOSITORY THEN CALLED HERE IN SERVICE
-        iplists::create($request->toArray());
+        $insert = iplists::create($request->toArray());
+
+        iplisthistories::create([
+            "FK_history_id" => $insert->id,
+            "label"         => $request->label
+        ]);
 
         return [
             "success"      => true,
