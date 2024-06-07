@@ -17,4 +17,9 @@ class ipController extends Controller
     {
 
     }
+
+    protected function fetch(Request $request)
+    {
+        return (new ipService)->fetch($request);
+    }
 }

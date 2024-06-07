@@ -8,7 +8,9 @@ export default function Master()
     return (
         <div>
             <Side />
+            <div className="p-4 sm:ml-64">
             <Outlet />
+            </div>
             <Footer />
         </div>
     )

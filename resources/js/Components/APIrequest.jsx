@@ -18,4 +18,6 @@ APIrequest
             localStorage.removeItem("auth-token");
             //<Navigate to="/login" />;
         }
-    })
+    });
+
+export default APIrequest;
