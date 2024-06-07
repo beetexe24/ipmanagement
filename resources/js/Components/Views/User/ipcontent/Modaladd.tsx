@@ -1,7 +1,7 @@
 import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 import React from "react";
 
-export default function Modaladd({openModalAdd, onCloseModalAdd, add_new_ipaddress})
+export default function Modaladd({openModalAdd, onCloseModalAdd, add_new_ipaddress, updateDataToAdd, addIPerror})
 {
 
     return (
@@ -9,18 +9,21 @@ export default function Modaladd({openModalAdd, onCloseModalAdd, add_new_ipaddre
         <Modal.Header />
         <Modal.Body>
           <div className="space-y-6">
+            <div className="text-left">
+                <p className="text-md font-semibold text-red-700 whitespace-pre-line">{addIPerror}</p>
+            </div>
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">ADD NEW IP ADDRESS</h3>
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="ipaddress" value="IP Address" />
               </div>
-              <TextInput id="ipaddress" type="textbox" required />
+              <TextInput id="ipaddress" name="ipaddress" onChange={updateDataToAdd} type="textbox" required />
             </div>
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="label" value="Label" />
               </div>
-              <TextInput id="label" type="textbox" required />
+              <TextInput id="label" name="label" onChange={updateDataToAdd} type="textbox" required />
             </div>
             
             <div className="w-full">

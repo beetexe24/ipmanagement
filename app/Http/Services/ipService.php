@@ -9,7 +9,14 @@ class ipService {
 
     public function create($request)
     {
-        return "Success";
+        # NOTE: ONE LINER CODE ISN'T MOVED IN REPOSITORY AS IT WOULD BECOME REDUNDANT WHEN PLACED TO
+        # REPOSITORY THEN CALLED HERE IN SERVICE
+        iplists::create($request->toArray());
+
+        return [
+            "success"      => true,
+            "message"      => "Successfully Added"
+        ];
     }
 
     public function update($request)
@@ -19,7 +26,9 @@ class ipService {
 
     public function fetch($request)
     {
-        $data = iplists::paginate(2);
+        # NOTE: ONE LINER CODE ISN'T MOVED IN REPOSITORY AS IT WOULD BECOME REDUNDANT WHEN PLACED TO
+        # REPOSITORY THEN CALLED HERE IN SERVICE
+        $data = iplists::orderBy("id", "desc")->paginate(2);
 
         return [
             "success"   => true,

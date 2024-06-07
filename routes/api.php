@@ -15,10 +15,8 @@ use App\Http\Controllers\API\ipController;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-
-    Route::post("/add-new", [ipController::class, "create"])->name("createipaddress");
-    
     return $request->user();
 });
 
+Route::post("/create", [ipController::class, "create"])->name("createipaddress");
 Route::get("/", [ipController::class, "fetch"])->name("fetchipaddress");
