@@ -15,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+
+    Route::post("/add-new", [accountController::class, "create"])->name("createipaddress");
     return $request->user();
 });
