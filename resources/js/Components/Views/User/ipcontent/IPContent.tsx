@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function IPContent({data, openHistories})
+export default function IPContent({data, openHistories, openIPupdate})
 {
     return data.length > 0?
     (
@@ -13,6 +13,9 @@ export default function IPContent({data, openHistories})
                 </td>
                 <td className="px-6 py-4">
                     {row.label}
+                </td>
+                <td className="px-2 py-4">
+                    <i className="fa-regular fa-pen-to-square cursor-pointer" onClick={() => {openIPupdate(row.id, row.ipaddress, row.label)}}></i>
                 </td>
                 <td className="px-2 py-4">
                     <i className="fa-regular fa-note-sticky cursor-pointer" onClick={() => {openHistories(row.id)}}></i>

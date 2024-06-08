@@ -6,6 +6,8 @@ import IPpagination from "./IPpagination";
 import { initFlowbite } from "flowbite";
 import Modaladd from "./Modaladd";
 import SuccessEntry from "./SuccessEntry";
+import HistoriesModal from "./HistoriesModal";
+import Modalupdate from "./Modalupdate";
 
 
 export default function Index()
@@ -32,20 +34,29 @@ export default function Index()
         label: string
     }
 
-    const [ipdata, setIPdata] = useState<Data[]>([]);
+    const [ipdata, setIPdata] = useState<Data>();
     const [displaySkeleton, setDisplaySkeleton] = useState<string>('relative');
     const [openModalHistories, setOpenModalHistories] = useState(false);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState<number>(1);
+
     const [openModalAdd, setOpenModalAdd] = useState(false);
+    const [openModalUpdate, setOpenModalUpdate] = useState(false);
+
     const [toaddIP, setToaddIP] = useState<Data>({ipaddress: '', label: ''});
     const [addIPerror, setAddIPerror] = useState('');
+
     const [displaySuccessEntry, setDisplaySuccessEntry] = useState('none');
+    const [historyData, setHistoryData] = useState<Data[]>([]);
+
+    const [ipaddress_to_be_updated, setIpaddress_to_be_updated] = useState('');
+    const [label_to_be_updated, setLabel_to_be_updated] = useState('');
 
 
     const getIPaddresses = (page:number) =>
     {
-        let endpoint = `/?page=${page}`;
+        let endpoint = `/dashboard?page=${page}`;
 
         // UPDATE THE URL
         window.history.replaceState(null, "New Page Title", endpoint);
@@ -69,6 +80,7 @@ export default function Index()
             }, 500)
         })
     }
+    
 
     function onCloseModalAdd() {
         setOpenModalAdd(false);
@@ -82,12 +94,7 @@ export default function Index()
             {
                 onCloseModalAdd();
 
-                const urlParams = new URLSearchParams(window.location.search);
-                const page = (isNaN(parseInt(urlParams.get('page')!))) ? 1 : parseInt(urlParams.get('page')!);
-
-                setCurrentPage(page);
-                let endpoint = `/?page=${page}`;
-                getIPaddresses(page)
+                reloadPage();
 
                 setAddIPerror('');
 
@@ -124,19 +131,68 @@ export default function Index()
         }
 
         APIrequest
-        .post("/get-history", param)
+        .post("/fetch-history", param)
         .then((response) => {
             if(response.data.success)
             {
-                //setHistoryData(response.data.data);
-                //setOpenModalHistories(true);
+                setHistoryData(response.data.data);
+                setOpenModalHistories(true);
             }
         })
         .catch((error) => {
             console.log(error);
         });
+    }
 
-        
+    function openIPupdate(id:number, ipaddress:string, label:string)
+    {
+        setIpaddress_to_be_updated(ipaddress);
+        setLabel_to_be_updated(label);
+        setOpenModalUpdate(true);
+    }
+
+    function closeIPupdate() {
+        setOpenModalUpdate(false);
+    }
+
+    function updateIPaddress()
+    {
+        const param = {
+            ipaddress: ipaddress_to_be_updated,
+            label: toaddIP.label
+        }
+
+        APIrequest
+        .post("/update", param)
+        .then((response) => {
+            if(response.data.success)
+            {
+                closeIPupdate();
+
+                reloadPage();
+
+                setAddIPerror('');
+
+                setDisplaySuccessEntry('flex');
+                
+                setTimeout(() => {
+                    setDisplaySuccessEntry('none');
+                }, 1500)
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    function reloadPage()
+    {
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = (isNaN(parseInt(urlParams.get('page')!))) ? 1 : parseInt(urlParams.get('page')!);
+
+        setCurrentPage(page);
+        let endpoint = `/?page=${page}`;
+        getIPaddresses(page)
     }
 
     return (
@@ -149,9 +205,24 @@ export default function Index()
                 addIPerror={addIPerror}
                 />
 
+                <HistoriesModal 
+                    openModalHistories={openModalHistories}
+                    setOpenModalHistories={setOpenModalHistories}
+                    historyData={historyData}
+                />
+
+                <Modalupdate
+                    openModalUpdate={openModalUpdate}
+                    closeIPupdate={closeIPupdate}
+                    ipaddress_to_be_updated={ipaddress_to_be_updated}
+                    label_to_be_updated={label_to_be_updated}
+                    updateDataToAdd={updateDataToAdd}
+                    updateIPaddress={updateIPaddress}
+                />
+
                 <SuccessEntry displaySuccessEntry={displaySuccessEntry}/>
                 <div>
-                    <button type="button" onClick={() => setOpenModalAdd(true)} className="float-right mb-5 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">NEW IP ADDRESS</button>
+                    <button type="button" onClick={() => setOpenModalAdd(true)} className="float-right mb-5 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">ADD NEW IP ADDRESS</button>
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
@@ -164,6 +235,9 @@ export default function Index()
                                 <th scope="col" className="px-2 py-3 w-10">
                                             
                                 </th>
+                                <th scope="col" className="px-2 py-3 w-10">
+                                            
+                                </th>
                             </tr>
                         </thead>
                             
@@ -171,7 +245,11 @@ export default function Index()
                             (displaySkeleton == 'relative') ? 
                                 <IPcontentSkeleton />
                             :
-                                <IPContent data={ipdata} openHistories={openModalHistories} />
+                                <IPContent 
+                                data={ipdata} 
+                                openHistories={openHistories} 
+                                openIPupdate={openIPupdate} 
+                                />
                         }
                         
                     </table>

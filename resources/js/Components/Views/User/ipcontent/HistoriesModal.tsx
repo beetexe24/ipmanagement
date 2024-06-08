@@ -14,7 +14,7 @@ export default function HistoriesModal({openModalHistories, setOpenModalHistorie
                 position={modalPlacement}
                 onClose={() => setOpenModalHistories(false)}
             >
-                <Modal.Header>Previous status</Modal.Header>
+                <Modal.Header>Previous label</Modal.Header>
                 <Modal.Body>
                 <div className="space-y-6">
                     <div className="relative overflow-x-auto">
@@ -22,10 +22,10 @@ export default function HistoriesModal({openModalHistories, setOpenModalHistorie
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
                                     <th scope="col" className="px-6 py-3 w-40">
-                                        Application Date
+                                        Date updated
                                     </th>
                                     <th scope="col" className="px-6 py-3">
-                                        Status
+                                        Label
                                     </th>
                                 </tr>
                             </thead>
@@ -37,7 +37,7 @@ export default function HistoriesModal({openModalHistories, setOpenModalHistorie
                                                 {row.created_at}
                                             </td>
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 break-word">
-                                                {row.status}
+                                                {row.label}
                                             </th>
                                         </tr>
                                         ))

@@ -16,7 +16,7 @@ APIrequest
         if(e.response.data.message === "Unauthenticated.")
         {
             localStorage.removeItem("auth-token");
-            //<Navigate to="/login" />;
+            <Navigate to="/login" />;
         }
     });
 
