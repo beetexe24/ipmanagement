@@ -6,4 +6,4 @@ IP ADDRESS MANAGEMENT ASSESSMENT
 </p>
 
 ## Installation
-`Clone the project https://github.com/beetexe24/ipmanagement.git`
+Clone the project `https://github.com/beetexe24/ipmanagement.git`
