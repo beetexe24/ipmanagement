@@ -11,7 +11,6 @@ export default function Master()
             <div className="p-4 sm:ml-64">
             <Outlet />
             </div>
-            <Footer />
         </div>
     )
 }
