@@ -73,9 +73,6 @@ export default function Side()
                             </div>
                             <ul className="py-1" role="none">
                                 <li>
-                                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Dashboard</a>
-                                </li>
-                                <li>
                                     <span onClick={Logout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer" role="menuitem">Sign out</span>
                                 </li>
                             </ul>
