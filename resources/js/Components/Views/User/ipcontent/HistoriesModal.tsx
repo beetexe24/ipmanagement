@@ -27,6 +27,9 @@ export default function HistoriesModal({openModalHistories, setOpenModalHistorie
                                     <th scope="col" className="px-6 py-3">
                                         Label
                                     </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Updated by
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,6 +41,9 @@ export default function HistoriesModal({openModalHistories, setOpenModalHistorie
                                             </td>
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 break-word">
                                                 {row.label}
+                                            </th>
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 break-word">
+                                                {row.email}
                                             </th>
                                         </tr>
                                         ))

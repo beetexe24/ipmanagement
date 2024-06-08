@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('FK_history_id')->nullable()->unsigned()->references('id')->on('iplists');
             $table->string('label')->nullable();
+            $table->foreignId('FK_user_history')->nullable()->unsigned()->references('id')->on('users');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }

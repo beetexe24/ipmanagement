@@ -109,7 +109,7 @@ export default function Index()
                 let entryError = response.data.errors;
                 var errors = '';
                 for (const property in entryError) {
-                    errors += "•" + entryError[property] + "\n";
+                    errors += "• " + entryError[property] + "\n";
                 }
                 setAddIPerror(errors);
             }

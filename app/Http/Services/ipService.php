@@ -1,10 +1,10 @@
 <?php
 namespace App\Http\Services;
 
-
 use App\Models\iplists;
 use App\Models\iplisthistories;
-
+use App\Http\Repository\DBiplists;
+use App\Http\Repository\DBiplisthistories;
 
 class ipService {
 
@@ -13,12 +13,7 @@ class ipService {
         # NOTE: ONE LINER CODE ISN'T MOVED IN REPOSITORY AS IT WOULD BECOME REDUNDANT WHEN PLACED TO
         # REPOSITORY THEN CALLED HERE IN SERVICE
         $insert = iplists::create($request->toArray());
-
-        
-        iplisthistories::create([
-            "FK_history_id" => $insert->id,
-            "label"         => $request->label
-        ]);
+        DBiplisthistories::create($request, $insert);
 
         return [
             "success"      => true,
@@ -28,14 +23,9 @@ class ipService {
 
     public function update($request)
     {
-        //iplists::where("ipaddress", $request->ipaddress)->update(["label" => $request->label]);
-        $update = iplists::where("ipaddress", $request->ipaddress)->first();
-        $update->update(["label" => $request->label]);
-
-        iplisthistories::create([
-            "FK_history_id" => $update->id,
-            "label"         => $request->label
-        ]);
+        $update = DBiplists::update($request);
+        DBiplisthistories::create($request, $update);
+        
 
         return [
             "success"      => true,
@@ -47,7 +37,7 @@ class ipService {
     {
         # NOTE: ONE LINER CODE ISN'T MOVED IN REPOSITORY AS IT WOULD BECOME REDUNDANT WHEN PLACED TO
         # REPOSITORY THEN CALLED HERE IN SERVICE
-        $data = iplists::orderBy("id", "desc")->paginate(2);
+        $data = iplists::orderBy("id", "desc")->paginate(10);
 
         return [
             "success"   => true,
@@ -57,7 +47,7 @@ class ipService {
 
     public function fetch_history($request)
     {
-        $data = iplisthistories::where("FK_history_id", $request->id)->orderBy("id", "desc")->get();
+        $data = DBiplisthistories::fetch($request->id);
 
         return array(
             "success"   => true,
