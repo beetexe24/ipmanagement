@@ -1,4 +1,4 @@
-<h1 align="center">**IP ADDRESS MANAGEMENT**</h1>
+<h1 align="center">IP ADDRESS MANAGEMENT</h1>
 
 ## OVERVIEW
 This is a simple web-based IP address management solution to allow us to record an IP
