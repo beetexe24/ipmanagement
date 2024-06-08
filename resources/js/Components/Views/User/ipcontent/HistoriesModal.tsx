@@ -35,14 +35,14 @@ export default function HistoriesModal({openModalHistories, setOpenModalHistorie
                             <tbody>
                                 {historyData.length > 0 ?
                                     historyData.map((row:any, index:number) =>(
-                                        <tr key={index} className="bg-white border-b dark:bg-gray-800">
+                                        <tr key={index} className="bg-white border-b">
                                             <td className="px-6 py-4">
                                                 {row.created_at}
                                             </td>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 break-word">
+                                            <th scope="row" className="px-6 py-4 font-normal text-gray-900 break-word">
                                                 {row.label}
                                             </th>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 break-word">
+                                            <th scope="row" className="px-6 py-4 font-normal text-gray-900 break-word">
                                                 {row.email}
                                             </th>
                                         </tr>
