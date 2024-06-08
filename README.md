@@ -14,8 +14,8 @@ IP ADDRESS MANAGEMENT
 * Run `composer install`
 * Run `npm install`
 * Run `npm run build`
+* Provide `.env` file inside the project root folder, then setup database connection
 * Run `php artisan migrate`
-* Provide `.env` file inside the project root folder
 
 ## USAGE
 * Open command prompt then navigate to the project folder
