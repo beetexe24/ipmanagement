@@ -23,8 +23,12 @@ class ipService {
 
     public function update($request)
     {
-        $update = DBiplists::update($request);
-        DBiplisthistories::create($request, $update);
+        if(strlen($request->label) > 0)
+        {
+            $update = DBiplists::update($request);
+            DBiplisthistories::create($request, $update);
+        }
+        
         
 
         return [

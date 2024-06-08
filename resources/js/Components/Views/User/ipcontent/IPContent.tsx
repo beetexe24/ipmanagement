@@ -7,8 +7,8 @@ export default function IPContent({data, openHistories, openIPupdate})
         
         <tbody>
         {data.map((row:any, index:number) => (
-            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <tr key={index} className="bg-white border-b hover:bg-gray-50">
+                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                     {row.ipaddress}
                 </td>
                 <td className="px-6 py-4">
@@ -28,7 +28,7 @@ export default function IPContent({data, openHistories, openIPupdate})
     (
         <tbody>
             <tr>
-                <td scope="row" className="px-6 py-4 font-medium text-gray-400 whitespace-nowrap dark:text-white">
+                <td scope="row" className="px-6 py-4 font-medium text-gray-400 whitespace-nowrap">
                 No data
                 </td>
             </tr>

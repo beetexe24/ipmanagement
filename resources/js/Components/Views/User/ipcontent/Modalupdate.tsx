@@ -12,7 +12,7 @@ export default function Modalupdate({openModalUpdate, closeIPupdate, ipaddress_t
             <div className="text-left">
                 <p className="text-md font-semibold text-red-700 whitespace-pre-line"></p>
             </div>
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">IP Address: {ipaddress_to_be_updated}</h3>
+            <h3 className="text-xl font-medium text-gray-900">IP Address: {ipaddress_to_be_updated}</h3>
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="label" value="Label" />

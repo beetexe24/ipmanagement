@@ -99,7 +99,7 @@ export default function Index()
                 setAddIPerror('');
 
                 setDisplaySuccessEntry('flex');
-                
+                setToaddIP({ipaddress: '', label: ''});
                 setTimeout(() => {
                     setDisplaySuccessEntry('none');
                 }, 1500)
@@ -146,6 +146,7 @@ export default function Index()
 
     function openIPupdate(id:number, ipaddress:string, label:string)
     {
+        console.log(label);
         setIpaddress_to_be_updated(ipaddress);
         setLabel_to_be_updated(label);
         setOpenModalUpdate(true);
@@ -174,7 +175,9 @@ export default function Index()
                 setAddIPerror('');
 
                 setDisplaySuccessEntry('flex');
-                
+                setIpaddress_to_be_updated('');
+                setLabel_to_be_updated('');
+                setToaddIP({ipaddress: '', label: ''});
                 setTimeout(() => {
                     setDisplaySuccessEntry('none');
                 }, 1500)
