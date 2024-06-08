@@ -2,6 +2,10 @@
 IP ADDRESS MANAGEMENT
 </p>
 
+## OVERVIEW
+This is a simple web-based IP address management solution to allow us to record an IP
+address and comment on its assignment.
+
 ## REQUIREMENTS
 * PHP 8.1.17 or higher. Use laragon `https://laragon.org/download/` or xampp `https://www.apachefriends.org/download.html`
 * Laravel Framework 10.48.12 or higher
