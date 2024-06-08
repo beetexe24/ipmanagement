@@ -1,6 +1,4 @@
-<p align="center">
-IP ADDRESS MANAGEMENT
-</p>
+**IP ADDRESS MANAGEMENT**
 
 ## OVERVIEW
 This is a simple web-based IP address management solution to allow us to record an IP
