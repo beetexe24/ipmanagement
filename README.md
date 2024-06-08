@@ -15,7 +15,7 @@ IP ADDRESS MANAGEMENT
 * Run `npm install`
 * Run `npm run build`
 * Run `php artisan migrate`
-* Provide env file inside the project root folder
+* Provide .env file inside the project root folder
 
 ## USAGE
 * Open command prompt then navigate to the project folder
